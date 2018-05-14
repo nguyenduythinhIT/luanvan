@@ -1,0 +1,35 @@
+.container{
+    width:90%;margin:10px auto;
+}
+.container > hr{
+    clear:both;
+}
+.container > a{
+    float:right;
+    margin:10px auto;
+}
+.flex-contain{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+}
+.flex-contain > div {
+  width: 200px;
+  min-height:200px;
+  border:1px solid white;
+  margin: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 30px;
+  font-size:16px;
+}
+.flex-contain > div:hover{
+    border:1px solid;
+}
+.flex-contain > div > p{
+    margin:0;
+}
+.flex-contain > div > img{
+    width:calc(100% - 2px);
+    margin: 2px auto;
+}
