@@ -49,8 +49,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Routing/view';
-$route['(:any)']='Routing/view/$1';
-$route['admin/(:any)']='Backend/admin/$1';
+$route['default_controller'] = 'Trangchu/view';
+$route['Trangchu']='Trangchu/view';
+$route['Dangnhap']='Dangnhap/view';
+$route['Danhnhap/login']='Dangnhap/login';
+$route['Danhnhap/logout']='Dangnhap/logout';
+$route['Dangki/thanhcong']='Dangki/success';
+$route['Dangki/buoc1']='Dangki/view1';
+$route['Dangki/buoc2']='Dangki/view2';
+$route['Dangki/buoc3']='Dangki/view3';
+$route['Dangki/vertify']='Dangki/vertify';
+$route['Dangki/thanhcong']='Dangki/success';
+$route['trangcanhan']='Thongtincanhan/view';
+$route['trangcanhan/(:any)']='Thongtincanhan/view/$1';
+$route['admin']='Admin_home/view';
+$route['admin/trangchu']='Admin_home/view';
+$route['admin/thanhvien']='Admin_thanhvien/view';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
