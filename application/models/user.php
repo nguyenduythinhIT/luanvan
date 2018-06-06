@@ -5,6 +5,40 @@ class user extends CI_Model {
         $query = $this->db->query(' select user.id as id, user.name as name, role.name as role, account.username as username from user left join (account inner join role on account.position=role.id ) on user.id=account.user_id');
         return $query->result_array();
     }
+    public function getallbyRole($role)
+    {
+        $query = $this->db->query(' select user.id as id, user.name as name, role.name as role, account.username as username from user left join (account inner join role on account.position=role.id ) on user.id=account.user_id where role.id=?',array($role));
+        return $query->result_array();
+    }
+    public function search($name)
+    {
+        $query = $this->db->query("select user.id as id, user.name as name, role.name as role, account.username as username from user left join (account inner join role on account.position=role.id ) on user.id=account.user_id where user.name like '%$name%'",array($name));
+        return $query->result_array();
+    }
+    public function searchbyID($id)
+    {
+        $query = $this->db->query("select * from user where id=?",array($id));
+        return $query->result_array();
+    }
+    public function update($id,$name,$phone,$mail,$address,$id_card)
+    {
+        $arr=array($name,$phone,$mail,$address,$id_card,$id);
+        try {$query = $this->db->query("update user set name=?, phone=?,mail=?,address=?,id_card=?,updated_at=NOW() where id=?",$arr);
+        echo "Cập nhật thành công";
+        }catch(Exception $e)
+        {
+            echo $e;
+        }
+    }
+    public function delete($id)
+    {
+        try {$query = $this->db->query("delete from user where id=?",array($id));
+        echo "Xóa thành công";
+        }catch(Exception $e)
+        {
+            echo $e;
+        }
+    }
     public function add($name,$phone,$mail,$address,$id_card)
     {
         try{

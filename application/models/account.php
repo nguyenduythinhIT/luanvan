@@ -16,6 +16,11 @@ class account extends CI_Model {
         $query = $this->db->query('select * from account where password = ?',array($password));
         return $query->result_array();
     }
+    public function check_pin($pin)
+    {
+        $query = $this->db->query('select * from account where pin = ?',array($pin));
+        return $query->result_array();
+    }
     public function add($username,$password,$id,$role=2)
     {
         try{
@@ -24,6 +29,51 @@ class account extends CI_Model {
         catch(Exception $e){
             return 0;
         }
+    }
+    public function delete($username)
+    {
+        try{
+            $query = $this->db->query('delete from account where username=?',array($username));
+            return "success";
+        }
+        catch(Exception $e){
+            return $e;
+        }
+    }
+    public function deletebyUser_id($userid)
+    {
+        try{
+            $query = $this->db->query('delete from account where user_id=?',array($userid));
+            return "success";
+        }
+        catch(Exception $e){
+            return $e;
+        }
+    }
+    public function updatePassword($username,$password)
+    {
+        try{
+            $query = $this->db->query('update account set password=?,updated_at=NOW() where username=?',array($password,$username));
+            return "success";
+        }catch(Exception $e)
+        {
+            return $e;
+        }
+    }
+    public function updatePin($username,$pin)
+    {
+        try{
+            $query = $this->db->query('update account set pin=?,updated_at=NOW() where username=?',array($password,$username));
+            return "success";
+        }catch(Exception $e)
+        {
+            return $e;
+        }
+    }
+    public function searchbyID($id)
+    {
+        $query = $this->db->query("select * from account where user_id=?",array($id));
+        return $query->result_array();
     }
     public function getUserbyUsername($username)
     {

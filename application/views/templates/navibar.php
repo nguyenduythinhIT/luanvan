@@ -1,3 +1,7 @@
+<?php
+$menu=new menu();
+$menu_parent=$menu->getAllParent();
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="<?php echo base_url();?>">Mini Shoping</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -5,38 +9,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <?php foreach($menu_parent as $k => $v){
+      $menu_item=$menu->getAllbyParent($v['id']);
+      if(count($menu_item)==0){
+      ?>
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url();?>">Trang chủ<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?php echo base_url().$v['url'];?>"><?php echo $v['name'];?><span class="sr-only">(current)</span></a>
       </li>
+      <?php } else { ?>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="<?php echo base_url();?>wiki" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Danh mục sản phẩm
+        <a class="nav-link dropdown-toggle" href="<?php echo base_url().$v['url'];?>wiki" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php echo $v['name'];?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo base_url();?>danhsachsanpham">Xem tất cả</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Bán chạy</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Mới nhập</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Điện gia dụng</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Nội thất</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Trang phục</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Thực phẩm</a>
+        <?php foreach($menu_item as $k2=>$v2){?>
+          <a class="dropdown-item" href="<?php echo base_url().$v2['url'];?>"><?php echo $v2['name'];?></a>
+        <?php }?>
         </div>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url();?>">Khuyến mại<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="<?php echo base_url();?>wiki" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Liên hệ
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo base_url();?>">Giới thiệu về siêu thị</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Các câu hỏi thường gặp</a>
-          <a class="dropdown-item" href="<?php echo base_url();?>">Đổi trả sản phẩm</a>
-        </div>
-      </li>
+    <?php }}?>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input name='s' class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
@@ -55,4 +46,3 @@
     </form>
   </div>
 </nav>
-  

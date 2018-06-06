@@ -7,7 +7,7 @@
         </div>
         <div class='form-group text-light'>
             <label for="password">Mật khẩu:</label>
-            <input type='password' class='form-control' name="password" id="password" placeholder="Mật khẩu">
+            <input type='password' class='form-control' name="password" id="password" placeholder="Mật khẩu" pattern=".{6,}"  title="6 kí tự trở lên" >
         </div>
         <small class='text-danger'><?php if(isset($error)) echo $error; ?></small>
         <div class='form-group text-dark'>

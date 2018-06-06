@@ -17,6 +17,7 @@ class Admin_home extends CI_Controller {
 		$data['title'] ="Trang chủ";
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navibar', $data);
+		$this->load->view('templates/admin-menu', $data);
 		$this->load->view('admin/home', $data);
 		$this->load->view('templates/footer', $data);
 	}

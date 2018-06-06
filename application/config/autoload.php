@@ -134,5 +134,9 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
     "user",
-    "account"
+    "account",
+    "menu",
+    "slider",
+    "category",
+    "product_type"
 );

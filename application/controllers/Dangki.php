@@ -153,7 +153,7 @@ class Dangki extends CI_Controller {
 					{
 						$_SESSION['signup']['address']=$_POST['address'];
 						$id=$user->add($_SESSION['signup']['name'],$_SESSION['signup']['phone'],$_SESSION['signup']['mail'],$_SESSION['signup']['address'],$_SESSION['signup']['id_card']);
-						$account->add($_SESSION['signup']['username'],$_SESSION['signup']['password'],$id[0]['id']);
+						$account->add($_SESSION['signup']['username'],md5(sha1($_SESSION['signup']['username'].$_SESSION['signup']['password'])),$id[0]['id']);
 					}
 					$data['title'] = "Đăng kí: Thành công";
 					$this->load->view('templates/header', $data);

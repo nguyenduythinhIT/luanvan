@@ -9,16 +9,22 @@
 </style>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  <?php $flag=0;
+  foreach($slider as $k=>$v){
+    ?>
+    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $flag;?>" <?php if($flag == 0) {echo "class='active'";$flag++;} else $flag++;?>></li>
+  <?php } ?>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img style='width:80%;height:40vw' class="d-block w-100" src="<?php echo base_url();?>image/slider_1.png" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img style='width:80%;height:40vw' class="d-block w-100" src="<?php echo base_url();?>image/slider_2.png" alt="Second slide">
-    </div>
+  <?php $flag=0;
+  foreach($slider as $k=>$v){
+    ?>
+      <div class="carousel-item <?php if($flag == 0) {echo "active";$flag++;}?>"><a href="<?php echo base_url().$v['url'];?>">
+      <img style='width:80%;height:40vw' class="d-block w-100" src="<?php echo base_url();?>image/slider_<?php echo $v['id'];?>.png" alt="First slide">
+      </a></div>
+    <?php
+  }
+  ?>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

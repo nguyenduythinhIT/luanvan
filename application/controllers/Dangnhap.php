@@ -40,6 +40,7 @@ class Dangnhap extends CI_Controller {
 		$user=new user();
 		if(count($account->check_password(md5(sha1($_POST['username'].$_POST['password']))))==1)
 		{
+			$sld=new slider();
 			$role=$account->getRole($_POST['username']);
 			$role=$role[0]['position'];
 			$_SESSION['user_data']['role']=$role;
@@ -51,6 +52,7 @@ class Dangnhap extends CI_Controller {
 			$data['user_data']['name']=$u[0]['name'];
 			$_SESSION['user_data']['userid']=$u[0]['id'];
 			$_SESSION['user_data']['name']=$u[0]['name'];
+			$data['slider']=$sld->getall();
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/navibar', $data);
 			$this->load->view('templates/slider', $data);
